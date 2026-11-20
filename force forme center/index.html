@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Force Forme — Wellness Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/three@0.169.0/build/three.min.js"></script>
+</head>
+<body>
+  <!-- Section 1: Hero with Interactive 3D Wellness Core -->
+  <header class="hero" id="accueil">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <nav class="navbar">
+      <a href="#accueil" class="brand">
+        <span class="brand-logo-wrap">
+          <img
+            src="logo.png"
+            alt="Logo Force Forme Wellness Center"
+            data-i18n-alt="brand_alt"
+            class="brand-logo"
+          />
+        </span>
+        <span class="brand-text">
+          <strong>Force Forme</strong>
+          <small>Wellness Center</small>
+        </span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#accueil" data-i18n="nav_home">Accueil</a></li>
+        <li><a href="#soins" data-i18n="nav_services">Soins</a></li>
+        <li><a href="#rdv" data-i18n="nav_booking">Prendre RDV</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="Language switcher">
+          <button type="button" class="lang-btn active" data-lang="fr">FR</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="tel:0661190786" class="nav-cta">06 61 19 07 86</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow stagger-item" style="--delay: 0.1s" data-i18n="hero_eyebrow">
+        Équilibre • Énergie • Harmonie Corporelle
+      </p>
+      <h1 class="hero-title stagger-item" style="--delay: 0.25s" data-i18n="hero_title">
+        Révélez votre <span>force vitale</span> et votre sérénité.
+      </h1>
+      <p class="hero-subtitle stagger-item" style="--delay: 0.4s" data-i18n="hero_subtitle">
+        Hammam royal, sauna, massages, soins du visage, maderothérapie, hijama, énergie pranique et formations bien-être.
+      </p>
+      <div class="hero-actions stagger-item" style="--delay: 0.55s">
+        <a href="tel:0661190786" class="btn btn-primary" data-i18n="cta_primary">
+          Prendre RDV • 0661190786
+        </a>
+        <a href="#soins" class="btn btn-ghost" data-i18n="cta_secondary">
+          Découvrir les soins
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-hint stagger-item" style="--delay: 0.75s" aria-hidden="true">
+      <span data-i18n="scroll_hint">Défiler</span>
+      <i class="scroll-line"></i>
+    </div>
+  </header>
+
+  <!-- Section 2: Soins, Formules & Catégories avec Effet Glissant -->
+  <section class="services-section" id="soins">
+    <div class="services-container">
+      <div class="section-header reveal-item">
+        <p class="section-eyebrow" data-i18n="services_eyebrow">Nos Formules &amp; Soins</p>
+        <h2 class="section-title" data-i18n="services_title">
+          Des rituels sur mesure par <span>catégorie</span>
+        </h2>
+        <p class="section-subtitle" data-i18n="services_subtitle">
+          Sélectionnez une catégorie pour faire glisser les soins et découvrir nos formules bien-être.
+        </p>
+      </div>
+
+      <!-- Category Filter Bar with Sliding Pill -->
+      <div class="filter-bar reveal-item" role="tablist" aria-label="Filter treatments by category">
+        <span class="filter-slider" id="filter-slider" aria-hidden="true"></span>
+        <button type="button" class="filter-btn active" data-filter="all" data-i18n="filter_all">
+          Tous
+        </button>
+        <button type="button" class="filter-btn" data-filter="packs" data-i18n="filter_packs">
+          Packs &amp; Offres
+        </button>
+        <button type="button" class="filter-btn" data-filter="face_wax" data-i18n="filter_face_wax">
+          Visage &amp; Épilation
+        </button>
+        <button type="button" class="filter-btn" data-filter="body_massage" data-i18n="filter_body_massage">
+          Hammam &amp; Massage
+        </button>
+        <button type="button" class="filter-btn" data-filter="therapy_course" data-i18n="filter_therapy_course">
+          Thérapies &amp; Formation
+        </button>
+      </div>
+
+      <!-- Sliding Services Grid -->
+      <div class="services-grid" id="services-grid">
+        <!-- 1. Sauna & Massage & Soin de visage — 500 DH -->
+        <article class="service-card-wrap reveal-item" data-category="packs" data-service="sauna_pack">
+          <div class="service-card">
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="card-top">
+              <span class="card-price">500 DH</span>
+              <span class="card-tag" data-i18n="tag_pack">Pack</span>
+            </div>
+            <h3 class="card-title" data-i18n="p1_title">Sauna &amp; Massage &amp; Soin de Visage</h3>
+            <p class="card-desc" data-i18n="p1_desc">
+              Séance sauna relaxante, massage corporel apaisant et soin du visage complet pour une détente totale.
+            </p>
+            <button type="button" class="card-link" data-open-service="sauna_pack" data-i18n="card_more">
+              Voir les détails →
+            </button>
+          </div>
+        </article>
+
+        <!-- 2. Pédicure & Soin & Massage — 700 DH -->
+        <article class="service-card-wrap reveal-item" data-category="packs" data-service="pedi_pack">
+          <div class="service-card">
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="card-top">
+              <span class="card-price">700 DH</span>
+              <span class="card-tag" data-i18n="tag_pack">Pack</span>
+            </div>
+            <h3 class="card-title" data-i18n="p2_title">Pédicure &amp; Soin &amp; Massage</h3>
+            <p class="card-desc" data-i18n="p2_desc">
+              Soin complet des pieds, rituel de soin et massage revitalisant pour repartir léger et détendu.
+            </p>
+            <button type="button" class="card-link" data-open-service="pedi_pack" data-i18n="card_more">
+              Voir les détails →
+            </button>
+          </div>
+        </article>
+
+        <!-- 3. 10 Madérothérapie — 2000 DHs -->
+        <article class="service-card-wrap reveal-item" data-category="packs" data-service="madero_pack">
+          <div class="service-card">
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="card-top">
+              <span class="card-price">2000 DHs</span>
+              <span class="card-tag" data-i18n="tag_minceur">Minceur</span>
+            </div>
+            <h3 class="card-title" data-i18n="p3_title">10 Séances Madérothérapie</h3>
+            <p class="card-desc" data-i18n="p3_desc">
+              Pack spécial amincissement (10 séances + lifting colombien) pour sculpter, raffermir et lisser la silhouette.
+            </p>
+            <button type="button" class="card-link" data-open-service="madero_pack" data-i18n="card_more">
+              Voir les détails →
+            </button>
+          </div>
+        </article>
+
+        <!-- 4. Hydrafacial & Microneedling -->
+        <article class="service-card-wrap reveal-item" data-category="face_wax" data-service="facial">
+          <div class="service-card">
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="card-top">
+              <span class="card-num">04</span>
+              <span class="card-tag" data-i18n="tag_face">Visage</span>
+            </div>
+            <h3 class="card-title" data-i18n="p4_title">Hydrafacial &amp; Microneedling</h3>
+            <p class="card-desc" data-i18n="p4_desc">
+              Nettoyage en profondeur, exfoliation, hydratation éclat (3 secrets glow) et stimulation du collagène.
+            </p>
+            <button type="button" class="card-link" data-open-service="facial" data-i18n="card_more">
+              Voir les détails →
+            </button>
+          </div>
+        </article>
+
+        <!-- 5. Épilation Cire Froide & Chaude Jetable -->
+        <article class="service-card-wrap reveal-item" data-category="face_wax" data-service="waxing">
+          <div class="service-card">
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="card-top">
+              <span class="card-num">05</span>
+              <span class="card-tag" data-i18n="tag_wax">Épilation</span>
+            </div>
+            <h3 class="card-title" data-i18n="p5_title">Épilation Cire Froide &amp; Chaude Jetable</h3>
+            <p class="card-desc" data-i18n="p5_desc">
+              Épilation complète, demi-jambe, jambe entière, bord maillot et maillot intégral pour une peau douce et nette.
+            </p>
+            <button type="button" class="card-link" data-open-service="waxing" data-i18n="card_more">
+              Voir les détails →
+            </button>
+          </div>
+        </article>
+
+        <!-- 6. Hammam Royal, Gommage & Massages -->
+        <article class="service-card-wrap reveal-item" data-category="body_massage" data-service="hammam_massage">
+          <div class="service-card">
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="card-top">
+              <span class="card-num">06</span>
+              <span class="card-tag" data-i18n="tag_massage">Hammam &amp; Massage</span>
+            </div>
+            <h3 class="card-title" data-i18n="p6_title">Hammam Royal, Gommage &amp; Massages</h3>
+            <p class="card-desc" data-i18n="p6_desc">
+              Hammam royal et gommage, pierres chaudes dos, relaxant + serviette de flamme, bambou drainage, anti-stress.
+            </p>
+            <button type="button" class="card-link" data-open-service="hammam_massage" data-i18n="card_more">
+              Voir les détails →
+            </button>
+          </div>
+        </article>
+
+        <!-- 7. Thérapies Énergétiques, Hijama & Minceur -->
+        <article class="service-card-wrap reveal-item" data-category="therapy_course" data-service="therapies">
+          <div class="service-card">
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="card-top">
+              <span class="card-num">07</span>
+              <span class="card-tag" data-i18n="tag_therapy">Thérapie</span>
+            </div>
+            <h3 class="card-title" data-i18n="p7_title">Énergie Pranique, Sujok, Hijama &amp; Minceur</h3>
+            <p class="card-desc" data-i18n="p7_desc">
+              Kinésiologie &amp; réflexologie, hijama purifiante, yésothérapie, thérapie pour maigrir et massage amincissement.
+            </p>
+            <button type="button" class="card-link" data-open-service="therapies" data-i18n="card_more">
+              Voir les détails →
+            </button>
+          </div>
+        </article>
+
+        <!-- 8. Formation Massage Thérapeutique — 1200 DH -->
+        <article class="service-card-wrap reveal-item" data-category="therapy_course" data-service="formation">
+          <div class="service-card">
+            <div class="card-shine" aria-hidden="true"></div>
+            <div class="card-top">
+              <span class="card-price">1200 DH</span>
+              <span class="card-tag" data-i18n="tag_course">Formation</span>
+            </div>
+            <h3 class="card-title" data-i18n="p8_title">Formation Massage Thérapeutique</h3>
+            <p class="card-desc" data-i18n="p8_desc">
+              Anatomie, relaxation musculaire, dos/jambes, approche énergétique, pratique + certification et réflexologie plantaire offerte.
+            </p>
+            <button type="button" class="card-link" data-open-service="formation" data-i18n="card_more">
+              Voir les détails →
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Interactive Treatment Detail Panel -->
+      <div class="service-detail-panel" id="service-detail" hidden>
+        <div class="detail-inner">
+          <div>
+            <p class="detail-kicker" id="detail-kicker"></p>
+            <h3 class="detail-title" id="detail-title"></h3>
+            <p class="detail-body" id="detail-body"></p>
+          </div>
+          <div class="detail-actions">
+            <a href="tel:0661190786" class="btn btn-primary" data-i18n="cta_primary">
+              Prendre RDV • 0661190786
+            </a>
+            <button type="button" class="btn btn-ghost" id="close-detail" data-i18n="detail_close">
+              Fermer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section 3: Pourquoi Nous Choisir / Why Choose Us -->
+  <section class="why-section" id="pourquoi-nous">
+    <div class="why-container">
+      <div class="section-header reveal-item">
+        <p class="section-eyebrow" data-i18n="why_eyebrow">Pourquoi Force Forme</p>
+        <h2 class="section-title" data-i18n="why_title">
+          Un sanctuaire complet dédié à votre <span>bien-être</span>
+        </h2>
+        <p class="section-subtitle" data-i18n="why_subtitle">
+          Au cœur de Hassan à Rabat, nous allions soins esthétiques, détente, thérapies énergétiques et accompagnement personnalisé[cite: 1, 4, 11, 12].
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal-item">
+          <div class="why-badge">01</div>
+          <h3 class="why-title" data-i18n="w1_title">Approche Globale Corps &amp; Énergie</h3>
+          <p class="why-desc" data-i18n="w1_desc">
+            Hammam royal, sauna, massages, soins du visage, madérothérapie, hijama, énergie pranique et réflexologie réunis au même endroit[cite: 1, 3, 4, 5, 7, 11, 12].
+          </p>
+        </div>
+
+        <div class="why-card reveal-item">
+          <div class="why-badge">02</div>
+          <h3 class="why-title" data-i18n="w2_title">Ouvert 7j/7 • 10h – 22h</h3>
+          <p class="why-desc" data-i18n="w2_desc">
+            Un rythme souple tous les jours de 10h à 22h avec réservation conseillée pour adapter vos séances à votre emploi du temps[cite: 4].
+          </p>
+        </div>
+
+        <div class="why-card reveal-item">
+          <div class="why-badge">03</div>
+          <h3 class="why-title" data-i18n="w3_title">Accès Facile à Hassan, Rabat</h3>
+          <p class="why-desc" data-i18n="w3_desc">
+            Rue Benghazi, 2ème étage, Appt 6, à côté du Musée Mohammed VI d'Art Moderne — un cadre calme et accueillant[cite: 11, 12].
+          </p>
+        </div>
+
+        <div class="why-card reveal-item">
+          <div class="why-badge">04</div>
+          <h3 class="why-title" data-i18n="w4_title">Formules Claires &amp; Formation</h3>
+          <p class="why-desc" data-i18n="w4_desc">
+            Des packs transparents (500 DH, 700 DH, 2000 DHs) et des formations certifiantes en massage thérapeutique[cite: 3, 9, 10].
+          </p>
+        </div>
+      </div>
+
+      <div class="why-banner reveal-item">
+        <div class="why-banner-text">
+          <strong data-i18n="why_banner_title">Réservation conseillée • 06 61 19 07 86</strong>
+          <span data-i18n="why_banner_sub">Rue Benghazi, 2ème étage, Appt 6, Hassan, Rabat • Ouvert tous les jours 10h–22h[cite: 4, 11, 12]</span>
+        </div>
+        <a href="tel:0661190786" class="btn btn-primary" data-i18n="cta_primary">
+          Prendre RDV • 0661190786
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Section 3B: Parcours Rituel 3D / Interactive Ritual Journey -->
+  <section class="parcours-section" id="parcours">
+    <div class="parcours-container">
+      <div class="section-header reveal-item">
+        <p class="section-eyebrow" data-i18n="parcours_eyebrow">Expérience &amp; Parcours 3D</p>
+        <h2 class="section-title" data-i18n="parcours_title">
+          Comment se déroule votre <span>séance</span>
+        </h2>
+        <p class="section-subtitle" data-i18n="parcours_subtitle">
+          Cliquez sur chaque étape pour faire pivoter le prisme 3D et découvrir le rythme de votre visite.
+        </p>
+      </div>
+
+      <div class="parcours-layout reveal-item">
+        <div class="parcours-steps" role="tablist" aria-label="Ritual steps">
+          <button type="button" class="step-pill active" data-step="0">
+            <span class="step-idx">01</span>
+            <span class="step-label" data-i18n="step1_pill">Accueil &amp; Écoute</span>
+          </button>
+          <button type="button" class="step-pill" data-step="1">
+            <span class="step-idx">02</span>
+            <span class="step-label" data-i18n="step2_pill">Préparation &amp; Énergie</span>
+          </button>
+          <button type="button" class="step-pill" data-step="2">
+            <span class="step-idx">03</span>
+            <span class="step-label" data-i18n="step3_pill">Soin ou Massage Ciblé</span>
+          </button>
+          <button type="button" class="step-pill" data-step="3">
+            <span class="step-idx">04</span>
+            <span class="step-label" data-i18n="step4_pill">Apaisement &amp; Suivi</span>
+          </button>
+        </div>
+
+        <div class="parcours-stage">
+          <div class="cube-scene" aria-hidden="true">
+            <div class="ritual-cube" id="ritual-cube">
+              <div class="cube-face face-front"><span>01</span></div>
+              <div class="cube-face face-right"><span>02</span></div>
+              <div class="cube-face face-back"><span>03</span></div>
+              <div class="cube-face face-left"><span>04</span></div>
+              <div class="cube-face face-top"><span>FF</span></div>
+              <div class="cube-face face-bottom"><span>✦</span></div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <p class="step-kicker" id="step-kicker" data-i18n="step1_kicker">Étape 01 • Accueil</p>
+            <h3 class="step-heading" id="step-heading" data-i18n="step1_title">Écoute de vos besoins</h3>
+            <p class="step-copy" id="step-copy" data-i18n="step1_desc">
+              À votre arrivée au 2ème étage (Appt 6, Rue Benghazi, Hassan, Rabat), nous identifions vos objectifs : détente, drainage, minceur, visage ou rééquilibrage énergétique[cite: 1, 11, 12].
+            </p>
+            <a href="#rdv" class="btn btn-ghost" data-i18n="step_cta">Choisir ce créneau</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3C: Formation Massage Thérapeutique Spotlight -->
+  <section class="formation-section" id="formation">
+    <div class="formation-container">
+      <div class="formation-card reveal-item">
+        <div class="formation-content">
+          <p class="section-eyebrow" data-i18n="form_spot_eyebrow">Formation Certifiante • 1200 DH</p>
+          <h2 class="formation-title" data-i18n="form_spot_title">
+            Formation <span>Massage Thérapeutique</span>[cite: 9]
+          </h2>
+          <p class="formation-lead" data-i18n="form_spot_lead">
+            Formez-vous à l'art du massage thérapeutique avec pratique encadrée, certification et formation réflexologie plantaire gratuite[cite: 9].
+          </p>
+
+          <ul class="formation-list">
+            <li data-i18n="f_item_1">Anatomie et bases du massage[cite: 9]</li>
+            <li data-i18n="f_item_2">Technique de relaxation musculaire[cite: 9]</li>
+            <li data-i18n="f_item_3">Massage du dos, des jambes et approche énergétique globale[cite: 9]</li>
+            <li data-i18n="f_item_4">Pratique encadrée + certification + réflexologie plantaire offerte[cite: 9]</li>
+          </ul>
+
+          <div class="formation-actions">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="enroll-formation-btn"
+              data-i18n="form_spot_cta"
+            >
+              S'inscrire sur WhatsApp • 1200 DH[cite: 9]
+            </button>
+            <a href="tel:0661190786" class="btn btn-ghost" data-i18n="form_spot_call">
+              Infos • 0661190786[cite: 9]
+            </a>
+          </div>
+        </div>
+
+        <div class="formation-3d-panel" aria-hidden="true">
+          <div class="holo-ring ring-outer"></div>
+          <div class="holo-ring ring-inner"></div>
+          <div class="formation-price-badge">
+            <span class="badge-label" data-i18n="form_spot_badge">Tarif Formation</span>
+            <strong>1200 DH[cite: 9]</strong>
+            <small data-i18n="form_spot_bonus">+ Réflexologie plantaire gratuite[cite: 9]</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section 4: Prendre RDV & Contact -->
+  <section class="booking-section" id="rdv">
+    <div class="booking-container">
+      <div class="section-header reveal-item">
+        <p class="section-eyebrow" data-i18n="rdv_eyebrow">Réservation &amp; Accès</p>
+        <h2 class="section-title" data-i18n="rdv_title">
+          Réservez votre moment <span>Force Forme</span>
+        </h2>
+        <p class="section-subtitle" data-i18n="rdv_subtitle">
+          Choisissez votre soin ou formule, indiquez votre créneau souhaité et envoyez votre demande par WhatsApp ou appel direct.
+        </p>
+      </div>
+
+      <div class="booking-grid">
+        <!-- Interactive RDV Form Card -->
+        <form class="booking-card reveal-item" id="rdv-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="client-name" data-i18n="form_name_label">Nom complet</label>
+              <input
+                type="text"
+                id="client-name"
+                name="clientName"
+                placeholder="Ex. Salma / Youssef"
+                data-i18n-placeholder="form_name_ph"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="client-phone" data-i18n="form_phone_label">Téléphone</label>
+              <input
+                type="tel"
+                id="client-phone"
+                name="clientPhone"
+                placeholder="06 XX XX XX XX"
+                data-i18n-placeholder="form_phone_ph"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="service-select" data-i18n="form_service_label">Soin, pack ou formation</label>
+            <select id="service-select" name="serviceSelect">
+              <option value="Sauna & Massage & Soin de visage (500 DH)" data-i18n="opt_sauna_pack">
+                Sauna &amp; Massage &amp; Soin de visage — 500 DH
+              </option>
+              <option value="Pédicure & Soin & Massage (700 DH)" data-i18n="opt_pedi_pack">
+                Pédicure &amp; Soin &amp; Massage — 700 DH
+              </option>
+              <option value="10 Séances Madérothérapie (2000 DHs)" data-i18n="opt_madero_pack">
+                10 Séances Madérothérapie + Lifting Colombien — 2000 DHs
+              </option>
+              <option value="Hydrafacial & Microneedling" data-i18n="opt_facial">
+                Hydrafacial &amp; Microneedling
+              </option>
+              <option value="Épilation Cire Froide & Chaude Jetable" data-i18n="opt_waxing">
+                Épilation Cire Froide &amp; Chaude Jetable
+              </option>
+              <option value="Hammam Royal, Gommage & Massages" data-i18n="opt_hammam">
+                Hammam Royal, Gommage &amp; Massages
+              </option>
+              <option value="Énergie Pranique, Sujok, Hijama & Minceur" data-i18n="opt_therapies">
+                Énergie Pranique, Sujok, Hijama &amp; Minceur
+              </option>
+              <option value="Formation Massage Thérapeutique (1200 DH)" data-i18n="opt_formation">
+                Formation Massage Thérapeutique — 1200 DH
+              </option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="preferred-date" data-i18n="form_date_label">Jour souhaité</label>
+              <input type="date" id="preferred-date" name="preferredDate" />
+            </div>
+            <div class="form-group">
+              <label for="preferred-time" data-i18n="form_time_label">Créneau (10h – 22h)</label>
+              <select id="preferred-time" name="preferredTime">
+                <option value="10h00 – 12h00">10h00 – 12h00</option>
+                <option value="12h00 – 15h00">12h00 – 15h00</option>
+                <option value="15h00 – 18h00" selected>15h00 – 18h00</option>
+                <option value="18h00 – 22h00">18h00 – 22h00</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="client-notes" data-i18n="form_notes_label">Remarques (optionnel)</label>
+            <textarea
+              id="client-notes"
+              name="clientNotes"
+              rows="2"
+              placeholder="Préférence de praticien/praticienne, question..."
+              data-i18n-placeholder="form_notes_ph"
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" data-i18n="form_submit_wa">
+              Envoyer sur WhatsApp
+            </button>
+            <a href="tel:0661190786" class="btn btn-ghost" data-i18n="form_call_now">
+              Appeler • 0661190786
+            </a>
+          </div>
+
+          <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+        </form>
+
+        <!-- Studio Location & Hours Card -->
+        <aside class="info-card reveal-item" aria-label="Studio details">
+          <div class="info-block">
+            <span class="info-label" data-i18n="info_addr_label">Adresse</span>
+            <p class="info-value" data-i18n="info_addr_value">
+              Rue Benghazi, 2ème étage, Appt 6<br />
+              À côté du Musée Mohammed VI d'Art Moderne<br />
+              Hassan, Rabat
+            </p>
+          </div>
+
+          <div class="info-block">
+            <span class="info-label" data-i18n="info_hours_label">Horaires</span>
+            <p class="info-value" data-i18n="info_hours_value">
+              Ouvert tous les jours : 10h00 – 22h00<br />
+              <small data-i18n="info_res_note">Réservation conseillée</small>
+            </p>
+          </div>
+
+          <div class="info-block">
+            <span class="info-label" data-i18n="info_contact_label">Téléphones &amp; Réseaux</span>
+            <div class="contact-links">
+              <a href="tel:0661190786" class="contact-pill">06 61 19 07 86</a>
+              <a href="tel:0661590786" class="contact-pill">06 61 59 07 86</a>
+              <span class="contact-handle">@forceformecenter</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <!-- Section 5: Google Maps / Localisation -->
+  <section class="map-section" id="carte">
+    <div class="map-container">
+      <div class="section-header reveal-item">
+        <p class="section-eyebrow" data-i18n="map_eyebrow">Localisation &amp; Itinéraire</p>
+        <h2 class="section-title" data-i18n="map_title">
+          Nous trouver à <span>Hassan, Rabat</span>
+        </h2>
+        <p class="section-subtitle" data-i18n="map_subtitle">
+          Rue Benghazi, 2ème étage, Appt 6, à côté du Musée Mohammed VI d'Art Moderne — ouvert tous les jours de 10h à 22h.
+        </p>
+      </div>
+
+      <div class="map-card reveal-item">
+        <div class="map-frame-wrap">
+          <iframe
+            id="google-map-frame"
+            title="Force Forme Wellness Center — Rue Benghazi, Hassan, Rabat"
+            src="https://maps.google.com/maps?q=Rue%20Benghazi%2C%20Hassan%2C%20Rabat%2C%20Morocco&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="map-footer-bar">
+          <div class="map-address-summary">
+            <strong data-i18n="map_pin_title">Force Forme Wellness Center</strong>
+            <span data-i18n="map_pin_addr">Rue Benghazi, 2ème étage, Appt 6 • Près du Musée Mohammed VI d'Art Moderne, Rabat</span>
+          </div>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Rue+Benghazi+Hassan+Rabat+Morocco"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+            data-i18n="map_open_btn"
+          >
+            Ouvrir dans Google Maps →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>Force Forme</strong>
+        <span data-i18n="footer_tagline">Wellness Center • Hassan, Rabat</span>
+      </div>
+      <div class="footer-nav">
+        <a href="#accueil" data-i18n="nav_home">Accueil</a>
+        <a href="#soins" data-i18n="nav_services">Soins</a>
+        <a href="#pourquoi-nous" data-i18n="nav_why">Pourquoi Nous</a>
+        <a href="#rdv" data-i18n="nav_booking">Prendre RDV</a>
+      </div>
+      <p class="footer-copy" data-i18n="footer_copy">
+        © <span id="year">2026</span> Force Forme Wellness Center. Tous droits réservés.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
